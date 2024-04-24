@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        header {
+            border: 2px solid #7ea8df;
+            height: 10%;
+            background-color: #7ea8df;
+            color: white;
+        }
+        
+        nav {
+            border: 2px solid #7ea8df;
+            height: 5%;
+        }
+        
+        main {
+            height: 75%;
+            background-image: url(../lesson/sj1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        footer {
+            border: 2px solid #7ea8df;
+            height: 10%;
+            background-color: #7ea8df;
+            color: white;
+        }
+        
+        p#book {
+            font-size: 1.5em;
+            letter-spacing: 0.2em;
+        }
+        
+        button {
+            font-size: 1.2em;
+            margin-right: 1em;
+        }
+    </style>
+    <title> 书籍推荐 </title>
+</head>
+
+<body>
+    <header>
+        <p id="book">
+            书籍推荐
+        </p>
+    </header>
+    <nav>
+        <button>
+        导航1
+    </button>
+        <button>
+        导航2
+    </button>
+        <button>
+        导航3
+    </button>
+    </nav>
+
+    <main>
+
+    </main>
+
+    <footer>
+        <p id="statusInfo">
+            CopyRight from 黄丹丹 江西科技师范大学 20213644
+        </p>
+    </footer>
+
+    <script>
+        var UI = {};
+        UI.deviceWidth = window.innerWidth;
+        UI.deviceHeight = window.innerHeight;
+        document.body.style.height = UI.deviceHeight + 'px';
+        document.body.style.fontSize = UI.deviceWidth / 75 + 'px';
+    </script>
+
+
+</body>
+
+</html>
