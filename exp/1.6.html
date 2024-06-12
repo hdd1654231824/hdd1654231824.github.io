@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1 , user-scalable=no">
-    <title>UI的个性化键盘控制——巧妙应用keydown和keyup键盘底层事件</title>
+    <title>Web期末</title>
     <style>
         * {
             margin: 10px;
@@ -13,26 +13,26 @@
         }
         
         header {
-            border: 3px solid green;
-            height: 10%;
+            border: 3px solid #7ea8df;
+            height: 7%;
             font-size: 1em;
         }
         
         nav {
-            border: 3px solid green;
-            height: 10%;
+            border: 3px solid #7ea8df;
+            height: 8%;
         }
         
         main {
-            border: 3px solid green;
-            height: 70%;
+            border: 3px solid #7ea8df;
+            height: 80%;
             font-size: 0.8em;
             position: relative;
         }
         
         footer {
-            border: 3px solid green;
-            height: 10%;
+            border: 3px solid #7ea8df;
+            height: 5%;
             font-size: 0.7em;
         }
         
@@ -41,18 +41,18 @@
         }
         
         button {
-            font-size: 1em;
+            font-size: 0.8em;
         }
         
         #bookface {
             position: absolute;
             width: 80%;
-            height: 80%;
-            border: 1px solid red;
+            height: 94%;
+            border: 1px solid rgb(96, 94, 233);
             background-color: blanchedalmond;
             left: 7%;
-            top: 7%;
-            background-image: url("../lesson/back.jpg");
+            top: 1px;
+            background-image: url("../myface/myface1.jpg");
             background-size: cover;
         }
         
@@ -96,14 +96,13 @@
 
     <main id="main">
         <div id="bookface">
-            本利代码的运行需要超过1千像素宽度的宽屏<br> 建议使用有键盘的PC运行和调试代码
-            <br> 当然拖动/滑动超过100像素的UI互动依然有效！
+
         </div>
     </main>
 
     <footer>
 
-        CopyRight 黄丹丹 江西科技师范大学 2024--2025
+        CopyRight 黄丹丹 江西科技师范大学 2024-2025
 
     </footer>
     <div id="aid">
@@ -159,7 +158,7 @@
             let handleEnd = function(ev) {
                 Pointer.isDown = false;
                 ev.preventDefault()
-                    //console.log(ev.touches)
+                console.log(ev.touches)
                 if (ev.touches) {
                     $("bookface").textContent = "触屏事件结束!";
                     if (Math.abs(Pointer.deltaX) > 100) {
@@ -208,16 +207,10 @@
 
 
             //提出问题：研究利用"keydown"和"keyup"2个底层事件，实现同时输出按键状态和文本内容
-            var text = $("typeText");
             $("body").addEventListener("keydown", function(ev) {
                 ev.preventDefault(); //增加“阻止事件对象的默认事件后”，不仅 keypress 事件将不再响应，而且系统的热键, 如“F5刷新页面/Ctrl+R ”、“F12打开开发者面板”等也不再被响应
                 let k = ev.key;
                 let c = ev.keyCode;
-                if (c == 13) {
-                    let pchild = document.createElement("p");
-                    $("aid").appendChild(pchild);
-                    text = pchild;
-                } else text.textContent += k;
                 $("keyStatus").textContent = "按下键 ：" + k + " ，" + "编码 ：" + c;
             });
             $("body").addEventListener("keyup", function(ev) {
@@ -225,7 +218,7 @@
                 let key = ev.key;
                 $("keyStatus").textContent = key + " 键已弹起";
                 if (printLetter(key)) {
-                    text.textContent += key;
+                    $("typeText").textContent += key;
                 }
 
                 function printLetter(k) {
@@ -248,6 +241,35 @@
                 } //function printLetter(k)
             });
         } //Code Block  End
+
+
+        var myDiv = document.getElementById('bookface');
+        var images = [
+            "../lesson/sj1.jpg",
+            "../lesson/sj2.jpg",
+            "../lesson/sj3.jpg",
+            "../lesson/sj4.jpg",
+            "../lesson/sj5.jpg",
+            "../myface/myface2.jpg"
+        ];
+        //当前位置
+        var currentImageIndex = 0;
+
+        document.getElementById("next").onclick = function() {
+            currentImageIndex++;
+            if (currentImageIndex == images.length) currentImageIndex = 0;
+            myDiv.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+        };
+        document.getElementById("prev").onclick = function() {
+            currentImageIndex--;
+            if (currentImageIndex == -1) currentImageIndex = images.length - 1;
+            myDiv.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+
+        };
+        //添加触摸事件监听器模拟鼠标滑动翻页效果
+        var touchstartX = 0;
+        var touchendX = 0;
+
         function $(ele) {
             if (typeof ele !== 'string') {
                 throw ("自定义的$函数参数的数据类型错误，实参必须是字符串！");
@@ -266,26 +288,6 @@
                 }
             }
         } //end of $
-        var myDiv = document.getElementById('bookface');
-        var images = [
-            "../lesson/sj1.jpg",
-            "../myface/myface1.jpg",
-	     "../myface/myface2.jpg"
-        ];
-        //当前位置
-        var currentImageIndex = 0;
-
-        document.getElementById("next").onclick = function() {
-            currentImageIndex++;
-            if (currentImageIndex == images.length) currentImageIndex = 0;
-            myDiv.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-        };
-        document.getElementById("prev").onclick = function() {
-            currentImageIndex--;
-            if (currentImageIndex == -1) currentImageIndex = images.length - 1;
-            myDiv.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-
-        };
     </script>
 </body>
 
